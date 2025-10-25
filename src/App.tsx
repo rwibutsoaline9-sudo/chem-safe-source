@@ -1,3 +1,4 @@
+import React from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -20,103 +21,45 @@ import Settings from "./pages/admin/Settings";
 
 const queryClient = new QueryClient();
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          {/* Public routes with header/footer */}
-          <Route path="/" element={
-            <div className="flex flex-col min-h-screen">
-              <Header />
-              <main className="flex-1">
-                <Home />
-              </main>
-              <Footer />
-            </div>
-          } />
-          <Route path="/products" element={
-            <div className="flex flex-col min-h-screen">
-              <Header />
-              <main className="flex-1">
-                <Products />
-              </main>
-              <Footer />
-            </div>
-          } />
-          <Route path="/products/:id" element={
-            <div className="flex flex-col min-h-screen">
-              <Header />
-              <main className="flex-1">
-                <ProductDetail />
-              </main>
-              <Footer />
-            </div>
-          } />
-          <Route path="/about" element={
-            <div className="flex flex-col min-h-screen">
-              <Header />
-              <main className="flex-1">
-                <About />
-              </main>
-              <Footer />
-            </div>
-          } />
-          <Route path="/safety" element={
-            <div className="flex flex-col min-h-screen">
-              <Header />
-              <main className="flex-1">
-                <Safety />
-              </main>
-              <Footer />
-            </div>
-          } />
-          <Route path="/contact" element={
-            <div className="flex flex-col min-h-screen">
-              <Header />
-              <main className="flex-1">
-                <Contact />
-              </main>
-              <Footer />
-            </div>
-          } />
-          
-          {/* Auth route (no header/footer) */}
-          <Route path="/auth" element={<Auth />} />
-          
-          {/* Admin routes (protected, no header/footer - has its own layout) */}
-          <Route path="/admin" element={
-            <ProtectedRoute>
-              <Dashboard />
-            </ProtectedRoute>
-          } />
-          <Route path="/admin/products" element={
-            <ProtectedRoute>
-              <AdminProducts />
-            </ProtectedRoute>
-          } />
-          <Route path="/admin/settings" element={
-            <ProtectedRoute>
-              <Settings />
-            </ProtectedRoute>
-          } />
-          
-          {/* 404 */}
-          <Route path="*" element={
-            <div className="flex flex-col min-h-screen">
-              <Header />
-              <main className="flex-1">
-                <NotFound />
-              </main>
-              <Footer />
-            </div>
-          } />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
+const PublicLayout = ({ children }: { children: React.ReactNode }) => (
+  <div className="flex flex-col min-h-screen">
+    <Header />
+    <main className="flex-1">{children}</main>
+    <Footer />
+  </div>
 );
+
+const App = () => {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            {/* Public routes with header/footer */}
+            <Route path="/" element={<PublicLayout><Home /></PublicLayout>} />
+            <Route path="/products" element={<PublicLayout><Products /></PublicLayout>} />
+            <Route path="/products/:id" element={<PublicLayout><ProductDetail /></PublicLayout>} />
+            <Route path="/about" element={<PublicLayout><About /></PublicLayout>} />
+            <Route path="/safety" element={<PublicLayout><Safety /></PublicLayout>} />
+            <Route path="/contact" element={<PublicLayout><Contact /></PublicLayout>} />
+            
+            {/* Auth route (no header/footer) */}
+            <Route path="/auth" element={<Auth />} />
+            
+            {/* Admin routes (protected, no header/footer - has its own layout) */}
+            <Route path="/admin" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+            <Route path="/admin/products" element={<ProtectedRoute><AdminProducts /></ProtectedRoute>} />
+            <Route path="/admin/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
+            
+            {/* 404 */}
+            <Route path="*" element={<PublicLayout><NotFound /></PublicLayout>} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  );
+};
 
 export default App;
