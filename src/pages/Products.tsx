@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ProductCard } from "@/components/ProductCard";
-import { products } from "@/lib/products";
+import { supabase } from "@/integrations/supabase/client";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Search, Filter } from "lucide-react";
@@ -12,21 +12,56 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
+interface Product {
+  id: string;
+  name: string;
+  category: string;
+  purity: string | null;
+  grade: string | null;
+  cas_number: string | null;
+  description: string | null;
+  price_value: number;
+  price_unit: string;
+  price_currency: string;
+  is_restricted: boolean;
+  image_url: string | null;
+}
+
 const Products = () => {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [categoryFilter, setCategoryFilter] = useState<string>("all");
   const [restrictedFilter, setRestrictedFilter] = useState<string>("all");
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const { data, error } = await supabase
+        .from('products')
+        .select('*')
+        .order('name');
+
+      if (error) {
+        console.error('Error fetching products:', error);
+      } else {
+        setProducts(data || []);
+      }
+      setLoading(false);
+    };
+
+    fetchProducts();
+  }, []);
 
   const categories = Array.from(new Set(products.map(p => p.category)));
 
   const filteredProducts = products.filter(product => {
     const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         product.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         product.casNumber.includes(searchQuery);
+                         (product.description?.toLowerCase().includes(searchQuery.toLowerCase())) ||
+                         (product.cas_number?.includes(searchQuery));
     const matchesCategory = categoryFilter === "all" || product.category === categoryFilter;
     const matchesRestricted = restrictedFilter === "all" || 
-                             (restrictedFilter === "restricted" && product.restricted) ||
-                             (restrictedFilter === "non-restricted" && !product.restricted);
+                             (restrictedFilter === "restricted" && product.is_restricted) ||
+                             (restrictedFilter === "non-restricted" && !product.is_restricted);
     
     return matchesSearch && matchesCategory && matchesRestricted;
   });
@@ -83,7 +118,11 @@ const Products = () => {
 
       <section className="py-12">
         <div className="container mx-auto px-4">
-          {filteredProducts.length === 0 ? (
+          {loading ? (
+            <div className="text-center py-12">
+              <p className="text-lg text-muted-foreground">Loading products...</p>
+            </div>
+          ) : filteredProducts.length === 0 ? (
             <div className="text-center py-12">
               <p className="text-lg text-muted-foreground">No products found matching your criteria.</p>
             </div>

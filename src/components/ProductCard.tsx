@@ -3,14 +3,9 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/componen
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { AlertTriangle } from "lucide-react";
-import { Product } from "@/lib/products";
 import productUrea from "@/assets/product-urea.jpg";
 import productSodiumCyanide from "@/assets/product-sodium-cyanide.jpg";
 import productCausticSoda from "@/assets/product-caustic-soda.jpg";
-
-interface ProductCardProps {
-  product: Product;
-}
 
 import categoryAcids from "@/assets/category-acids.jpg";
 import categoryAlkalis from "@/assets/category-alkalis.jpg";
@@ -22,6 +17,25 @@ import categoryPolymers from "@/assets/category-polymers.jpg";
 import categoryOxides from "@/assets/category-oxides.jpg";
 import categorySurfactants from "@/assets/category-surfactants.jpg";
 import categoryMetalSalts from "@/assets/category-metal-salts.jpg";
+
+interface Product {
+  id: string;
+  name: string;
+  category: string;
+  purity: string | null;
+  grade: string | null;
+  cas_number: string | null;
+  description: string | null;
+  price_value: number;
+  price_unit: string;
+  price_currency: string;
+  is_restricted: boolean;
+  image_url: string | null;
+}
+
+interface ProductCardProps {
+  product: Product;
+}
 
 const imageMap: Record<string, string> = {
   "product-urea.jpg": productUrea,
@@ -40,7 +54,7 @@ const imageMap: Record<string, string> = {
 };
 
 export const ProductCard = ({ product }: ProductCardProps) => {
-  const imageSrc = imageMap[product.image] || productUrea;
+  const imageSrc = product.image_url ? imageMap[product.image_url] || productUrea : productUrea;
   
   return (
     <Card className="h-full flex flex-col transition-all duration-300 hover:shadow-lg border-border">
@@ -56,7 +70,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
       <CardContent className="flex-1 p-6">
         <div className="flex items-start justify-between mb-3">
           <CardTitle className="text-xl">{product.name}</CardTitle>
-          {product.restricted && (
+          {product.is_restricted && (
             <Badge variant="destructive" className="flex items-center gap-1">
               <AlertTriangle className="w-3 h-3" />
               Restricted
@@ -64,13 +78,13 @@ export const ProductCard = ({ product }: ProductCardProps) => {
           )}
         </div>
         <div className="space-y-2 text-sm text-muted-foreground">
-          <p><span className="font-semibold text-foreground">Purity:</span> {product.purity}</p>
-          <p><span className="font-semibold text-foreground">Grade:</span> {product.grade}</p>
-          <p><span className="font-semibold text-foreground">CAS:</span> {product.casNumber}</p>
+          {product.purity && <p><span className="font-semibold text-foreground">Purity:</span> {product.purity}</p>}
+          {product.grade && <p><span className="font-semibold text-foreground">Grade:</span> {product.grade}</p>}
+          {product.cas_number && <p><span className="font-semibold text-foreground">CAS:</span> {product.cas_number}</p>}
           <p className="text-lg font-bold text-primary mt-3">
-            {product.price.currency} ${product.price.value.toLocaleString()} {product.price.unit}
+            {product.price_currency} ${product.price_value.toLocaleString()} / {product.price_unit}
           </p>
-          <p className="line-clamp-2">{product.description}</p>
+          {product.description && <p className="line-clamp-2">{product.description}</p>}
         </div>
       </CardContent>
       <CardFooter className="p-6 pt-0">

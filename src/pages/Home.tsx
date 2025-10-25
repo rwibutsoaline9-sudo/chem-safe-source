@@ -1,13 +1,44 @@
+import { useState, useEffect } from "react";
 import { Hero } from "@/components/Hero";
 import { TrustBadges } from "@/components/TrustBadges";
 import { ProductCard } from "@/components/ProductCard";
-import { products } from "@/lib/products";
+import { supabase } from "@/integrations/supabase/client";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 
+interface Product {
+  id: string;
+  name: string;
+  category: string;
+  purity: string | null;
+  grade: string | null;
+  cas_number: string | null;
+  description: string | null;
+  price_value: number;
+  price_unit: string;
+  price_currency: string;
+  is_restricted: boolean;
+  image_url: string | null;
+}
+
 const Home = () => {
-  const featuredProducts = products.filter(p => p.featured);
+  const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    const fetchFeaturedProducts = async () => {
+      const { data } = await supabase
+        .from('products')
+        .select('*')
+        .limit(6);
+
+      if (data) {
+        setFeaturedProducts(data);
+      }
+    };
+
+    fetchFeaturedProducts();
+  }, []);
   
   return (
     <div className="min-h-screen">
