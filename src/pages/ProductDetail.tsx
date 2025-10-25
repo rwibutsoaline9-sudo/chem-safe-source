@@ -9,10 +9,31 @@ import productUrea from "@/assets/product-urea.jpg";
 import productSodiumCyanide from "@/assets/product-sodium-cyanide.jpg";
 import productCausticSoda from "@/assets/product-caustic-soda.jpg";
 
+import categoryAcids from "@/assets/category-acids.jpg";
+import categoryAlkalis from "@/assets/category-alkalis.jpg";
+import categorySolvents from "@/assets/category-solvents.jpg";
+import categorySalts from "@/assets/category-salts.jpg";
+import categoryOrganics from "@/assets/category-organics.jpg";
+import categoryGases from "@/assets/category-gases.jpg";
+import categoryPolymers from "@/assets/category-polymers.jpg";
+import categoryOxides from "@/assets/category-oxides.jpg";
+import categorySurfactants from "@/assets/category-surfactants.jpg";
+import categoryMetalSalts from "@/assets/category-metal-salts.jpg";
+
 const imageMap: Record<string, string> = {
   "product-urea.jpg": productUrea,
   "product-sodium-cyanide.jpg": productSodiumCyanide,
   "product-caustic-soda.jpg": productCausticSoda,
+  "category-acids.jpg": categoryAcids,
+  "category-alkalis.jpg": categoryAlkalis,
+  "category-solvents.jpg": categorySolvents,
+  "category-salts.jpg": categorySalts,
+  "category-organics.jpg": categoryOrganics,
+  "category-gases.jpg": categoryGases,
+  "category-polymers.jpg": categoryPolymers,
+  "category-oxides.jpg": categoryOxides,
+  "category-surfactants.jpg": categorySurfactants,
+  "category-metal-salts.jpg": categoryMetalSalts,
 };
 
 const ProductDetail = () => {
@@ -91,6 +112,16 @@ const ProductDetail = () => {
               </div>
 
               <div className="space-y-6 mb-8">
+                <Card className="border-primary/20 bg-primary/5">
+                  <CardContent className="p-6">
+                    <p className="text-sm text-muted-foreground mb-2">Price</p>
+                    <p className="text-3xl font-bold text-primary">
+                      {product.price.currency} ${product.price.value.toLocaleString()}
+                    </p>
+                    <p className="text-sm text-muted-foreground mt-1">{product.price.unit}</p>
+                  </CardContent>
+                </Card>
+
                 <Card>
                   <CardContent className="p-6 space-y-4">
                     <div className="flex items-center gap-3 text-sm">
