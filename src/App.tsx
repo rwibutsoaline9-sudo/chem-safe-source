@@ -1,23 +1,26 @@
-import React from "react";
-import { Toaster } from "@/components/ui/toaster";
+import { Footer } from "@/components/Footer";
+import { Header } from "@/components/Header";
+import { ProtectedRoute } from "@/components/ProtectedRoute";
 import { Toaster as Sonner } from "@/components/ui/sonner";
+import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
-import { ProtectedRoute } from "@/components/ProtectedRoute";
-import Home from "./pages/Home";
-import Products from "./pages/Products";
-import ProductDetail from "./pages/ProductDetail";
+import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import About from "./pages/About";
-import Safety from "./pages/Safety";
-import Contact from "./pages/Contact";
 import Auth from "./pages/Auth";
+import Contact from "./pages/Contact";
+import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import ProductDetail from "./pages/ProductDetail";
+import Products from "./pages/Products";
+import Safety from "./pages/Safety";
+import ShippingPolicy from "./pages/ShippingPolicy";
+import TermsOfService from "./pages/TermsOfService";
+import BulkImport from "./pages/admin/BulkImport";
 import Dashboard from "./pages/admin/Dashboard";
 import AdminProducts from "./pages/admin/Products";
-import BulkImport from "./pages/admin/BulkImport";
 import Settings from "./pages/admin/Settings";
 
 const queryClient = new QueryClient();
@@ -45,7 +48,12 @@ const App = () => {
             <Route path="/about" element={<PublicLayout><About /></PublicLayout>} />
             <Route path="/safety" element={<PublicLayout><Safety /></PublicLayout>} />
             <Route path="/contact" element={<PublicLayout><Contact /></PublicLayout>} />
-            
+
+            {/* Legal/Policy pages */}
+            <Route path="/terms" element={<PublicLayout><TermsOfService /></PublicLayout>} />
+            <Route path="/privacy" element={<PublicLayout><PrivacyPolicy /></PublicLayout>} />
+            <Route path="/shipping" element={<PublicLayout><ShippingPolicy /></PublicLayout>} />
+
             {/* Auth route (no header/footer) */}
             <Route path="/auth" element={<Auth />} />
             
