@@ -25,18 +25,18 @@ export const TrustBadges = () => {
   ];
 
   return (
-    <section className="py-16 bg-muted/50">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <section className="py-3 bg-muted/50">
+      <div className="container mx-auto px-3">
+        <div className="flex flex-wrap justify-center gap-3">
           {badges.map((badge, index) => {
             const Icon = badge.icon;
             return (
-              <div key={index} className="text-center">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 text-primary mb-4">
-                  <Icon className="w-8 h-8" />
+              <div key={index} className="flex items-center gap-2 bg-background/60 px-3 py-1.5 rounded-md shadow-sm hover:bg-background/80 transition-colors">
+                <Icon className="w-4 h-4 text-primary" />
+                <div className="flex flex-col">
+                  <span className="text-sm font-medium whitespace-nowrap">{badge.title}</span>
+                  <span className="text-xs text-muted-foreground">{badge.description}</span>
                 </div>
-                <h3 className="text-lg font-semibold mb-2">{badge.title}</h3>
-                <p className="text-sm text-muted-foreground">{badge.description}</p>
               </div>
             );
           })}

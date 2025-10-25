@@ -1,5 +1,5 @@
-import warehouseImage from "@/assets/warehouse.jpg";
 import qualityControlImage from "@/assets/quality-control.jpg";
+import warehouseImage from "@/assets/warehouse.jpg";
 import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle } from "lucide-react";
 
@@ -14,21 +14,21 @@ const About = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <section className="bg-muted/50 py-16">
+      <section className="bg-muted/50 py-8 sm:py-12 md:py-16">
         <div className="container mx-auto px-4">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">About ChemSupply Pro</h1>
-          <p className="text-xl text-muted-foreground max-w-3xl">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4">About ChemSupply Pro</h1>
+          <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl">
             Leading global supplier of industrial chemicals with over 20 years of excellence
           </p>
         </div>
       </section>
 
-      <section className="py-16">
+      <section className="py-8 sm:py-12 md:py-16">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 items-center">
             <div>
-              <h2 className="text-3xl font-bold mb-6">Our Story</h2>
-              <div className="space-y-4 text-muted-foreground leading-relaxed">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">Our Story</h2>
+              <div className="space-y-3 sm:space-y-4 text-sm sm:text-base text-muted-foreground leading-relaxed">
                 <p>
                   Founded in 2003, ChemSupply Pro has grown from a regional distributor to a 
                   trusted global supplier of high-quality industrial chemicals. Our commitment 
@@ -59,19 +59,19 @@ const About = () => {
         </div>
       </section>
 
-      <section className="py-16 bg-muted/50">
+      <section className="py-8 sm:py-12 md:py-16 bg-muted/50">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 items-center">
             <div className="order-2 lg:order-1">
-              <img 
-                src={qualityControlImage} 
+              <img
+                src={qualityControlImage}
                 alt="Quality control laboratory"
                 className="rounded-lg shadow-lg w-full"
               />
             </div>
             <div className="order-1 lg:order-2">
-              <h2 className="text-3xl font-bold mb-6">Quality Assurance</h2>
-              <p className="text-muted-foreground mb-6 leading-relaxed">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">Quality Assurance</h2>
+              <p className="text-sm sm:text-base text-muted-foreground mb-4 sm:mb-6 leading-relaxed">
                 Every product undergoes rigorous testing in our certified laboratories. We maintain 
                 complete traceability from manufacturer to end-user, with full documentation including 
                 Certificates of Analysis (COA) and Safety Data Sheets (SDS) for every batch.
@@ -89,10 +89,10 @@ const About = () => {
         </div>
       </section>
 
-      <section className="py-16">
+      <section className="py-8 sm:py-12 md:py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">Our Commitment</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-10 md:mb-12">Our Commitment</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
             <Card>
               <CardContent className="p-6">
                 <h3 className="text-xl font-semibold mb-3">Safety First</h3>

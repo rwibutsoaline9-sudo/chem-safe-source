@@ -1,6 +1,6 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { AlertTriangle, Shield, FileCheck, Lock } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Card, CardContent } from "@/components/ui/card";
+import { AlertTriangle, FileCheck, Lock, Shield } from "lucide-react";
 
 const Safety = () => {
   const restrictedChemicals = [
@@ -23,31 +23,31 @@ const Safety = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <section className="bg-muted/50 py-16">
+      <section className="bg-muted/50 py-8 sm:py-12 md:py-16">
         <div className="container mx-auto px-4">
-          <div className="flex items-center gap-3 mb-4">
-            <Shield className="w-10 h-10 text-primary" />
-            <h1 className="text-4xl md:text-5xl font-bold">Safety & Compliance</h1>
+          <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+            <Shield className="w-8 h-8 sm:w-10 sm:h-10 text-primary" />
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">Safety & Compliance</h1>
           </div>
-          <p className="text-xl text-muted-foreground max-w-3xl">
+          <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl">
             Committed to safe trade practices and regulatory compliance
           </p>
         </div>
       </section>
 
-      <section className="py-16">
+      <section className="py-8 sm:py-12 md:py-16">
         <div className="container mx-auto px-4">
-          <Alert className="mb-12 border-primary/50 bg-primary/5">
-            <AlertTriangle className="h-5 w-5 text-primary" />
-            <AlertTitle className="text-lg font-semibold">Important Notice</AlertTitle>
-            <AlertDescription className="text-base mt-2">
+          <Alert className="mb-8 sm:mb-10 md:mb-12 border-primary/50 bg-primary/5">
+            <AlertTriangle className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
+            <AlertTitle className="text-base sm:text-lg font-semibold">Important Notice</AlertTitle>
+            <AlertDescription className="text-sm sm:text-base mt-2">
               ChemSupply Pro operates in full compliance with international chemical regulations including 
               REACH, CLP, and local jurisdiction requirements. All sales are business-to-business only. 
               We do not supply to individuals or unverified entities.
             </AlertDescription>
           </Alert>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 mb-10 sm:mb-12 md:mb-16">
             <Card>
               <CardContent className="p-6">
                 <div className="flex items-center gap-3 mb-4">

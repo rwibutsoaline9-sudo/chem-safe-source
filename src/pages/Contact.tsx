@@ -1,12 +1,11 @@
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Mail, MapPin, Phone, Upload } from "lucide-react";
+import { useState } from "react";
 import { toast } from "sonner";
-import { Mail, Phone, MapPin, Upload } from "lucide-react";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -39,18 +38,18 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <section className="bg-muted/50 py-16">
+      <section className="bg-muted/50 py-8 sm:py-12 md:py-16">
         <div className="container mx-auto px-4">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Request a Quote</h1>
-          <p className="text-xl text-muted-foreground">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4">Request a Quote</h1>
+          <p className="text-base sm:text-lg md:text-xl text-muted-foreground">
             Get competitive pricing and expert guidance for your chemical needs
           </p>
         </div>
       </section>
 
-      <section className="py-16">
+      <section className="py-8 sm:py-12 md:py-16">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 sm:gap-10 md:gap-12">
             <div className="lg:col-span-2">
               <Card>
                 <CardHeader>
