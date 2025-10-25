@@ -17,6 +17,7 @@ import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
 import Dashboard from "./pages/admin/Dashboard";
 import AdminProducts from "./pages/admin/Products";
+import BulkImport from "./pages/admin/BulkImport";
 import Settings from "./pages/admin/Settings";
 
 const queryClient = new QueryClient();
@@ -51,6 +52,7 @@ const App = () => {
             {/* Admin routes (protected, no header/footer - has its own layout) */}
             <Route path="/admin" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
             <Route path="/admin/products" element={<ProtectedRoute><AdminProducts /></ProtectedRoute>} />
+            <Route path="/admin/bulk-import" element={<ProtectedRoute><BulkImport /></ProtectedRoute>} />
             <Route path="/admin/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
             
             {/* 404 */}

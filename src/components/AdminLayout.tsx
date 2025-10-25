@@ -27,6 +27,7 @@ export const AdminLayout = ({ children }: AdminLayoutProps) => {
   const navItems = [
     { to: '/admin', icon: LayoutDashboard, label: 'Dashboard', end: true },
     { to: '/admin/products', icon: Package, label: 'Products' },
+    { to: '/admin/bulk-import', icon: Menu, label: 'Bulk Import' },
     { to: '/admin/settings', icon: Settings, label: 'Settings' },
   ];
 
